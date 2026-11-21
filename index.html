@@ -295,164 +295,146 @@
   </MAIN> 
   
  <script>
-  // ---------- READ ONE BOX (like cin) ----------
-  function val(id) {
-    let box = document.getElementById(id);
-    let n = Number(box.value) || 0;
-    let max = Number(box.max);
+  // ---------- marks you got, and marks that were possible so far ----------
+  let obtained = 0;
+  let possible = 0;
 
-    if (n > max) {
-      n = max;
-    }
-    if (n < 0) {
-      n = 0;
-    }
-    return n;
+  // add ONE box: skipped if empty (not done yet)
+  function add(id) {
+    let box = document.getElementById(id);
+    if (box.value === "") return;
+
+    let n = Number(box.value);
+    let max = Number(box.max);
+    if (n > max) n = max;
+    if (n < 0) n = 0;
+
+    obtained += n;
+    possible += max;
   }
 
-  // ---------- ONE FUNCTION PER SUBJECT (each gives marks out of 100) ----------
+  // percentage of the work done so far (-1 means nothing entered)
+  function percent() {
+    if (possible === 0) return -1;
+    return obtained / possible * 100;
+  }
+
+  // ---------- one function per subject ----------
   function calculus() {
-    return val("calcQUIZ1") + val("calcQUIZ2") + val("calcQUIZ3") + val("calcQUIZ4")
-         + val("calcASSIGN1") + val("calcASSIGN2") + val("calcASSIGN3") + val("calcASSIGN4")
-         + val("CalcMid") + val("CalcFinal");
+    obtained = 0; possible = 0;
+    add("calcQUIZ1"); add("calcQUIZ2"); add("calcQUIZ3"); add("calcQUIZ4");
+    add("calcASSIGN1"); add("calcASSIGN2"); add("calcASSIGN3"); add("calcASSIGN4");
+    add("CalcMid"); add("CalcFinal");
+    return percent();
   }
 
   function fop() {
-    return val("fopQUIZ1") + val("fopQUIZ2") + val("fopQUIZ3") + val("fopQUIZ4")
-         + val("fopASSIGN1") + val("fopASSIGN2") + val("fopASSIGN3") + val("fopASSIGN4")
-         + val("fopMID") + val("fopFINAL");
+    obtained = 0; possible = 0;
+    add("fopQUIZ1"); add("fopQUIZ2"); add("fopQUIZ3"); add("fopQUIZ4");
+    add("fopASSIGN1"); add("fopASSIGN2"); add("fopASSIGN3"); add("fopASSIGN4");
+    add("fopMID"); add("fopFINAL");
+    return percent();
   }
 
   function fopLab() {
-    return val("fopLabtask1") + val("fopLabtask2") + val("fopLabtask3")
-         + val("fopLabtask4") + val("fopLabtask5") + val("fopLabtask6")
-         + val("fopProject1") + val("fopProject2")
-         + val("fopLabMID") + val("fopLabFINAL");
+    obtained = 0; possible = 0;
+    add("fopLabtask1"); add("fopLabtask2"); add("fopLabtask3");
+    add("fopLabtask4"); add("fopLabtask5"); add("fopLabtask6");
+    add("fopProject1"); add("fopProject2");
+    add("fopLabMID"); add("fopLabFINAL");
+    return percent();
   }
 
   function english() {
-    return val("engQUIZ1") + val("engQUIZ2") + val("engQUIZ3") + val("engQUIZ4")
-         + val("engASSIGN1") + val("engASSIGN2") + val("engASSIGN3") + val("engASSIGN4")
-         + val("engMid") + val("engFinal");
+    obtained = 0; possible = 0;
+    add("engQUIZ1"); add("engQUIZ2"); add("engQUIZ3"); add("engQUIZ4");
+    add("engASSIGN1"); add("engASSIGN2"); add("engASSIGN3"); add("engASSIGN4");
+    add("engMid"); add("engFinal");
+    return percent();
   }
 
   function itc() {
-    return val("itcQUIZ1") + val("itcQUIZ2") + val("itcQUIZ3")
-         + val("itcASSIGN1") + val("itcASSIGN2") + val("itcASSIGN3")
-         + val("itcMID") + val("itcFINAL");
+    obtained = 0; possible = 0;
+    add("itcQUIZ1"); add("itcQUIZ2"); add("itcQUIZ3");
+    add("itcASSIGN1"); add("itcASSIGN2"); add("itcASSIGN3");
+    add("itcMID"); add("itcFINAL");
+    return percent();
   }
 
   function itcLab() {
-    return val("itcLabtask1") + val("itcLabtask2") + val("itcLabtask3")
-         + val("itcLabtask4") + val("itcLabtask5") + val("itcLabtask6")
-         + val("itcProject1") + val("itcProject2")
-         + val("itcLabMid") + val("itcLabFinal");
+    obtained = 0; possible = 0;
+    add("itcLabtask1"); add("itcLabtask2"); add("itcLabtask3");
+    add("itcLabtask4"); add("itcLabtask5"); add("itcLabtask6");
+    add("itcProject1"); add("itcProject2");
+    add("itcLabMid"); add("itcLabFinal");
+    return percent();
   }
 
   function physics() {
-    return val("phyQUIZ1") + val("phyQUIZ2") + val("phyQUIZ3") + val("phyQUIZ4")
-         + val("phyASSIGN1") + val("phyASSIGN2") + val("phyASSIGN3") + val("phyASSIGN4")
-         + val("phyMid") + val("phyFinal");
+    obtained = 0; possible = 0;
+    add("phyQUIZ1"); add("phyQUIZ2"); add("phyQUIZ3"); add("phyQUIZ4");
+    add("phyASSIGN1"); add("phyASSIGN2"); add("phyASSIGN3"); add("phyASSIGN4");
+    add("phyMid"); add("phyFinal");
+    return percent();
   }
 
   function physicsLab() {
-    return val("phyPractical1") + val("phyPractical2")
-         + val("phyProject1") + val("phyProject2")
-         + val("phyLabMid") + val("phyLabFinal");
+    obtained = 0; possible = 0;
+    add("phyPractical1"); add("phyPractical2");
+    add("phyProject1"); add("phyProject2");
+    add("phyLabMid"); add("phyLabFinal");
+    return percent();
   }
 
-  // ---------- MARKS -> GRADE POINTS (change to YOUR university scale) ----------
-  function gradePoint(marks) {
-    if (marks >= 90) return 4.0;
-    else if (marks >= 85) return 3.75;
-    else if (marks >= 80) return 3.50;
-    else if (marks >= 75) return 3.25;
-    else if (marks >= 70) return 3.00;
-    else if (marks >= 66) return 2.75;
-    else if (marks >= 63) return 2.50;
-    else if (marks >= 60) return 2.00;
-    else if (marks >= 55) return 1.50;
+  // ---------- your university scale ----------
+  function gradePoint(p) {
+    if (p >= 90) return 4.00;
+    else if (p >= 85) return 3.75;
+    else if (p >= 80) return 3.50;
+    else if (p >= 75) return 3.25;
+    else if (p >= 70) return 3.00;
+    else if (p >= 66) return 2.75;
+    else if (p >= 63) return 2.50;
+    else if (p >= 60) return 2.00;
+    else if (p >= 55) return 1.50;
     else return 0;
   }
 
-  // ---------- "MAIN": runs when the button is clicked (like cout) ----------
+  // ---------- totals ----------
+  let totalPoints = 0;
+  let totalCredits = 0;
+  let output = "";
+
+  // adds one subject to the totals and to the output text
+  function addSubject(name, credits, p) {
+    if (p < 0) return;                 // nothing entered, skip
+    let gp = gradePoint(p);
+    totalPoints += gp * credits;
+    totalCredits += credits;
+    output += name + ": " + obtained.toFixed(1) + " / " + possible.toFixed(1) +
+              " = " + p.toFixed(1) + "%, GP " + gp.toFixed(2) + "<br>";
+  }
+
+  // ---------- "main": runs when the button is clicked ----------
   document.getElementById("calcbtn").addEventListener("click", function () {
-    let totalPoints = 0;
-    let totalCredits = 0;
-    let output = "";
+    totalPoints = 0;
+    totalCredits = 0;
+    output = "";
 
-    // Calculus - 3 credit hours
-    let m = calculus();
-    if (m > 0) {
-      totalPoints += gradePoint(m) * 3;
-      totalCredits += 3;
-      output += "Calculus: " + m.toFixed(1) + "/100, GP " + gradePoint(m) + "<br>";
-    }
+    addSubject("Calculus", 3, calculus());
+    addSubject("FOP", 3, fop());
+    addSubject("FOP Lab", 1, fopLab());
+    addSubject("English", 3, english());
+    addSubject("ITC", 2, itc());
+    addSubject("ITC Lab", 1, itcLab());
+    addSubject("Applied Physics", 2, physics());
+    addSubject("Physics Lab", 1, physicsLab());
 
-    // FOP - 3 credit hours
-    m = fop();
-    if (m > 0) {
-      totalPoints += gradePoint(m) * 3;
-      totalCredits += 3;
-      output += "FOP: " + m.toFixed(1) + "/100, GP " + gradePoint(m) + "<br>";
-    }
-
-    // FOP Lab - 1 credit hour
-    m = fopLab();
-    if (m > 0) {
-      totalPoints += gradePoint(m) * 1;
-      totalCredits += 1;
-      output += "FOP Lab: " + m.toFixed(1) + "/100, GP " + gradePoint(m) + "<br>";
-    }
-
-    // English - 3 credit hours
-    m = english();
-    if (m > 0) {
-      totalPoints += gradePoint(m) * 3;
-      totalCredits += 3;
-      output += "English: " + m.toFixed(1) + "/100, GP " + gradePoint(m) + "<br>";
-    }
-
-    // ITC - 2 credit hours
-    m = itc();
-    if (m > 0) {
-      totalPoints += gradePoint(m) * 2;
-      totalCredits += 2;
-      output += "ITC: " + m.toFixed(1) + "/100, GP " + gradePoint(m) + "<br>";
-    }
-
-    // ITC Lab - 1 credit hour
-    m = itcLab();
-    if (m > 0) {
-      totalPoints += gradePoint(m) * 1;
-      totalCredits += 1;
-      output += "ITC Lab: " + m.toFixed(1) + "/100, GP " + gradePoint(m) + "<br>";
-    }
-
-    // Applied Physics - 2 credit hours
-    m = physics();
-    if (m > 0) {
-      totalPoints += gradePoint(m) * 2;
-      totalCredits += 2;
-      output += "Applied Physics: " + m.toFixed(1) + "/100, GP " + gradePoint(m) + "<br>";
-    }
-
-    // Applied Physics Lab - 1 credit hour (change if different)
-    m = physicsLab();
-    if (m > 0) {
-      totalPoints += gradePoint(m) * 1;
-      totalCredits += 1;
-      output += "Physics Lab: " + m.toFixed(1) + "/100, GP " + gradePoint(m) + "<br>";
-    }
-
-    // Final GPA
     if (totalCredits === 0) {
       output = "Please enter some marks first.";
     } else {
-      let gpa = totalPoints / totalCredits;
-      output += "<br><b>GPA: " + gpa.toFixed(2) + "</b>";
+      output += "<br><b>GPA so far: " + (totalPoints / totalCredits).toFixed(2) + "</b>";
     }
-
     document.getElementById("result").innerHTML = output;
   });
 </script>
