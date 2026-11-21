@@ -294,21 +294,168 @@
     </section>
   </MAIN> 
   
-  <script>
-    function val(id) {
-      return Number(document.getElementById(id).value) || 0;
+ <script>
+  // ---------- READ ONE BOX (like cin) ----------
+  function val(id) {
+    let box = document.getElementById(id);
+    let n = Number(box.value) || 0;
+    let max = Number(box.max);
+
+    if (n > max) {
+      n = max;
+    }
+    if (n < 0) {
+      n = 0;
+    }
+    return n;
+  }
+
+  // ---------- ONE FUNCTION PER SUBJECT (each gives marks out of 100) ----------
+  function calculus() {
+    return val("calcQUIZ1") + val("calcQUIZ2") + val("calcQUIZ3") + val("calcQUIZ4")
+         + val("calcASSIGN1") + val("calcASSIGN2") + val("calcASSIGN3") + val("calcASSIGN4")
+         + val("CalcMid") + val("CalcFinal");
+  }
+
+  function fop() {
+    return val("fopQUIZ1") + val("fopQUIZ2") + val("fopQUIZ3") + val("fopQUIZ4")
+         + val("fopASSIGN1") + val("fopASSIGN2") + val("fopASSIGN3") + val("fopASSIGN4")
+         + val("fopMID") + val("fopFINAL");
+  }
+
+  function fopLab() {
+    return val("fopLabtask1") + val("fopLabtask2") + val("fopLabtask3")
+         + val("fopLabtask4") + val("fopLabtask5") + val("fopLabtask6")
+         + val("fopProject1") + val("fopProject2")
+         + val("fopLabMID") + val("fopLabFINAL");
+  }
+
+  function english() {
+    return val("engQUIZ1") + val("engQUIZ2") + val("engQUIZ3") + val("engQUIZ4")
+         + val("engASSIGN1") + val("engASSIGN2") + val("engASSIGN3") + val("engASSIGN4")
+         + val("engMid") + val("engFinal");
+  }
+
+  function itc() {
+    return val("itcQUIZ1") + val("itcQUIZ2") + val("itcQUIZ3")
+         + val("itcASSIGN1") + val("itcASSIGN2") + val("itcASSIGN3")
+         + val("itcMID") + val("itcFINAL");
+  }
+
+  function itcLab() {
+    return val("itcLabtask1") + val("itcLabtask2") + val("itcLabtask3")
+         + val("itcLabtask4") + val("itcLabtask5") + val("itcLabtask6")
+         + val("itcProject1") + val("itcProject2")
+         + val("itcLabMid") + val("itcLabFinal");
+  }
+
+  function physics() {
+    return val("phyQUIZ1") + val("phyQUIZ2") + val("phyQUIZ3") + val("phyQUIZ4")
+         + val("phyASSIGN1") + val("phyASSIGN2") + val("phyASSIGN3") + val("phyASSIGN4")
+         + val("phyMid") + val("phyFinal");
+  }
+
+  function physicsLab() {
+    return val("phyPractical1") + val("phyPractical2")
+         + val("phyProject1") + val("phyProject2")
+         + val("phyLabMid") + val("phyLabFinal");
+  }
+
+  // ---------- MARKS -> GRADE POINTS (change to YOUR university scale) ----------
+  function gradePoint(marks) {
+    if (marks >= 86) return 4.0;
+    else if (marks >= 82) return 3.67;
+    else if (marks >= 78) return 3.33;
+    else if (marks >= 74) return 3.0;
+    else if (marks >= 70) return 2.67;
+    else if (marks >= 66) return 2.33;
+    else if (marks >= 62) return 2.0;
+    else if (marks >= 58) return 1.67;
+    else if (marks >= 54) return 1.33;
+    else if (marks >= 50) return 1.0;
+    else return 0;
+  }
+
+  // ---------- "MAIN": runs when the button is clicked (like cout) ----------
+  document.getElementById("calcbtn").addEventListener("click", function () {
+    let totalPoints = 0;
+    let totalCredits = 0;
+    let output = "";
+
+    // Calculus - 3 credit hours
+    let m = calculus();
+    if (m > 0) {
+      totalPoints += gradePoint(m) * 3;
+      totalCredits += 3;
+      output += "Calculus: " + m.toFixed(1) + "/100, GP " + gradePoint(m) + "<br>";
     }
 
-    function calculus() {
-      return val("calcQUIZ1") + val("calcQUIZ2") + val("calcQUIZ3") + val("calcQUIZ4")
-           + val("calcASSIGN1") + val("calcASSIGN2") + val("calcASSIGN3") + val("calcASSIGN4")
-           + val("CalcMid") + val("CalcFinal");
+    // FOP - 3 credit hours
+    m = fop();
+    if (m > 0) {
+      totalPoints += gradePoint(m) * 3;
+      totalCredits += 3;
+      output += "FOP: " + m.toFixed(1) + "/100, GP " + gradePoint(m) + "<br>";
     }
 
-    document.getElementById("calcbtn").addEventListener("click", function () {
-      let c = calculus();
-      document.getElementById("result").textContent = "Calculus total: " + c + " / 100";
-    });
-  </script>
+    // FOP Lab - 1 credit hour
+    m = fopLab();
+    if (m > 0) {
+      totalPoints += gradePoint(m) * 1;
+      totalCredits += 1;
+      output += "FOP Lab: " + m.toFixed(1) + "/100, GP " + gradePoint(m) + "<br>";
+    }
+
+    // English - 3 credit hours
+    m = english();
+    if (m > 0) {
+      totalPoints += gradePoint(m) * 3;
+      totalCredits += 3;
+      output += "English: " + m.toFixed(1) + "/100, GP " + gradePoint(m) + "<br>";
+    }
+
+    // ITC - 2 credit hours
+    m = itc();
+    if (m > 0) {
+      totalPoints += gradePoint(m) * 2;
+      totalCredits += 2;
+      output += "ITC: " + m.toFixed(1) + "/100, GP " + gradePoint(m) + "<br>";
+    }
+
+    // ITC Lab - 1 credit hour
+    m = itcLab();
+    if (m > 0) {
+      totalPoints += gradePoint(m) * 1;
+      totalCredits += 1;
+      output += "ITC Lab: " + m.toFixed(1) + "/100, GP " + gradePoint(m) + "<br>";
+    }
+
+    // Applied Physics - 2 credit hours
+    m = physics();
+    if (m > 0) {
+      totalPoints += gradePoint(m) * 2;
+      totalCredits += 2;
+      output += "Applied Physics: " + m.toFixed(1) + "/100, GP " + gradePoint(m) + "<br>";
+    }
+
+    // Applied Physics Lab - 1 credit hour (change if different)
+    m = physicsLab();
+    if (m > 0) {
+      totalPoints += gradePoint(m) * 1;
+      totalCredits += 1;
+      output += "Physics Lab: " + m.toFixed(1) + "/100, GP " + gradePoint(m) + "<br>";
+    }
+
+    // Final GPA
+    if (totalCredits === 0) {
+      output = "Please enter some marks first.";
+    } else {
+      let gpa = totalPoints / totalCredits;
+      output += "<br><b>GPA: " + gpa.toFixed(2) + "</b>";
+    }
+
+    document.getElementById("result").innerHTML = output;
+  });
+</script>
 </body>
 </html>
