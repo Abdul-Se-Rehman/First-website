@@ -25,6 +25,7 @@
             <label for="calcQUIZ4">Quiz 4(out of 4.5):</label>
             <INPUT type="number" id="calcQUIZ4" min="0" max="4.5" STEP="ANY">
             <br>
+            </div>
         <div>
             <label for="calcASSIGN1">Assignment 1(out of 3):</label>
             <INPUT type="number" id="calcASSIGN1" min="0" max="3" STEP="ANY"> 
@@ -77,7 +78,7 @@
          </div>
          <div>
             <label for="fopMID">MID-TERM(out of 30)</label>
-            <input type="mumber" id="fopMID" min="0" max="30" step="any">
+            <input type="number" id="fopMID" min="0" max="30" step="any">
          </div>
          <div>
             <label for="fopFINAL">FINAL(out of 40)</label>
@@ -89,12 +90,12 @@
             <h2>FOP LAB(1 credit hour)</h2>
          </div>
          <div>
-            <label for="FopLabtask1">Lab Task 1(out of 2.5)</label>
+            <label for="fopLabtask1">Lab Task 1(out of 2.5)</label>
             <input type="number" id="fopLabtask1" min="0" max="2.5" step="any">
             <label for="fopLabtask2">Lab Task 2(out of 2.5)</label>
             <input type="number" id="fopLabtask2" min="0" max="2.5" step="any">
             <br>
-            <label for="fopLabtask4">Lab Task 3(out of 2.5)</label>
+            <label for="fopLabtask3">Lab Task 3(out of 2.5)</label>
             <input type="number" id="fopLabtask3" min="0" max="2.5" step="any">
             <label for="fopLabtask4">Lab Task 4(out of 2.5)</label>
             <input type="number" id="fopLabtask4" min="0" max="2.5" step="any">
@@ -116,7 +117,7 @@
          </div>
          <div>
             <label for="fopLabFINAL">FINAL(out of 40)</label>
-            <input type="number" id="fopaLabFINAL" min="0" max="40" step="any">
+            <input type="number" id="fopLabFINAL" min="0" max="40" step="any">
          </div>
     </section>
     <section>
@@ -288,8 +289,26 @@
     </section>
     <section>
         <button id="calcbtn">Calculate GPA</button>
-        <div id="result">
+        <div id="result"></div>
+
     </section>
   </MAIN> 
+  
+  <script>
+    function val(id) {
+      return Number(document.getElementById(id).value) || 0;
+    }
+
+    function calculus() {
+      return val("calcQUIZ1") + val("calcQUIZ2") + val("calcQUIZ3") + val("calcQUIZ4")
+           + val("calcASSIGN1") + val("calcASSIGN2") + val("calcASSIGN3") + val("calcASSIGN4")
+           + val("CalcMid") + val("CalcFinal");
+    }
+
+    document.getElementById("calcbtn").addEventListener("click", function () {
+      let c = calculus();
+      document.getElementById("result").textContent = "Calculus total: " + c + " / 100";
+    });
+  </script>
 </body>
 </html>
