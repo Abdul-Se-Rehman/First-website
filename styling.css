@@ -1,0 +1,122 @@
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #0f172a;
+    color: #1f2937;
+  }
+
+  header {
+    background: linear-gradient(135deg, #0b1120, #1e293b);
+    text-align: center;
+    padding: 30px 16px;
+    border-bottom: 4px solid #d4af37;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #b8860b, #ffd700, #fff3b0, #ffd700, #b8860b);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: goldmove 4s linear infinite;
+  }
+  @keyframes goldmove {
+    to { background-position: 200% center; }
+  }
+
+  main {
+    max-width: 900px;
+    margin: 24px auto;
+    padding: 0 14px;
+  }
+
+  section {
+    background: #fffdf5;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+    border-top: 5px solid #d4af37;
+  }
+
+  section h2 {
+    margin: 0 0 6px;
+    color: #8a6d0b;
+    font-size: 1.3rem;
+  }
+
+  section div {
+    display: grid;
+    grid-template-columns: 1fr 90px 1fr 90px;
+    gap: 10px 14px;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  section div br { display: none; }
+
+  label { font-size: 0.95rem; }
+
+  input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #d6c27a;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+  }
+  input:focus {
+    outline: none;
+    border-color: #d4af37;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.35);
+  }
+
+  #calcbtn {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding: 14px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #1e293b;
+    background: linear-gradient(135deg, #b8860b, #ffd700, #b8860b);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  #calcbtn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -80%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+    transform: skewX(-20deg);
+    animation: shine 2.5s infinite;
+  }
+  @keyframes shine {
+    to { left: 140%; }
+  }
+
+  #result {
+    display: block;
+    margin-top: 14px;
+    padding: 14px 16px;
+    line-height: 1.8;
+    background: #fffdf5;
+    border-left: 5px solid #d4af37;
+    border-radius: 10px;
+  }
+  #result br { display: inline; }
+  #result b { font-size: 1.5rem; color: #8a6d0b; }
+  #result:empty { display: none; }
+
+  @media (max-width: 600px) {
+    section div { grid-template-columns: 1fr 80px; }
+    header h1 { font-size: 1.4rem; }
+  }
