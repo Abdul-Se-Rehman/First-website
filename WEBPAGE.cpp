@@ -794,16 +794,6 @@ double gpa_calculator()
 int main()
 { double gpa;
     gpa=gpa_calculator();
-    
-/* cout<<calculus_gp()<<endl;
- cout<<fop_gp()<<endl;
-cout<<foplab_gp();
-cout<<english_gp();
-cout<<itc_gp();
-cout<<itclab_gp();
-cout<<physics_gp();
-cout<<phylab_gp();
-gpa=gpa_calculator();*/
 cout<<endl<<"YOUR GPA IS :"<<gpa;
 
 }
